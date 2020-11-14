@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+  <a class="navbar-brand" *ngIf="loggedInUserType" [textContent]="'Welcome, ' + userName"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item font-weight-bold">
+        <div *ngIf="parents.user.includes(parent)" class="">
+          <a class="nav-link" (click)="purchase()">Purchase Items in Cart</a>
+        </div>
+      </li>
+      <div *ngIf="parents.admin.includes(parent)" class="">
+        <li class="nav-item font-weight-bold">
+          <a class="nav-link" (click)="routeToCreation()">Create Product</a>
+        </li>
+        <li class="nav-item font-weight-bold">
+          <a class="nav-link" (click)="routeToRegistration()">Register User</a>
+        </li>
+      </div>
+      <div *ngIf="!parents.user.includes(parent) && loggedInUserType" class=" ml-2">
+        <li class="nav-item font-weight-bold">
+          <a class="nav-link" (click)="routeToUserPortal()">User Portal</a>
+        </li>
+      </div>
+      <div *ngIf="!parents.admin.includes(parent) && loggedInUserType === 'admin'" class=" ml-2">
+        <li class="nav-item font-weight-bold">
+          <a class="nav-link" (click)="routeToAdminPortal()">Admin Portal</a>
+        </li>
+      </div>
+      <div *ngIf="loggedInUserType" class="float-right">
+        <li class="nav-item font-weight-bold">
+          <a class="nav-link" (click)="logout()">Log out</a>
+        </li>
+      </div>
+    </ul>
+  </div>
+</nav>
